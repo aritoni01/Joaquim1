@@ -1,16 +1,4 @@
-backend:
-  name: git-gateway
-  branch: main
-
-media_folder: "public/images"
-public_folder: "/images"
-
-collections:
-  - name: "noticias"
-    label: "Notícias"
-    folder: "content/noticias"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+"{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Data", name: "date", widget: "datetime" }
