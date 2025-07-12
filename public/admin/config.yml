@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "noticias"
+    label: "Notícias"
+    folder: "content/noticias"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Imagem", name: "image", widget: "image", required: false }
+      - { label: "Resumo", name: "summary", widget: "text" }
+      - { label: "Conteúdo", name: "body", widget: "markdown" }
+      - { label: "Categoria", name: "category", widget: "select", options: ["Notícias", "Eventos", "Turismo", "Cultura"] }
+
+  - name: "artigos"
+    label: "Artigos"
+    folder: "content/artigos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Data", name: "date", widget: "datetime" }
+      - { label: "Autor", name: "author", widget: "string" }
+      - { label: "Imagem", name: "image", widget: "image", required: false }
+      - { label: "Resumo", name: "summary", widget: "text" }
+      - { label: "Conteúdo", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+
+  - name: "paginas"
+    label: "Páginas"
+    folder: "content/paginas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Conteúdo", name: "body", widget: "markdown" }
