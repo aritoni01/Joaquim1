@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: aritoni01/Joaquim1
+  name: git-gateway
   branch: main
 
 media_folder: "public/images"
@@ -16,9 +15,12 @@ collections:
       - label: "Título"
         name: "title"
         widget: "string"
+        required: true
       - label: "Data"
         name: "date"
         widget: "datetime"
+        default: "{{now}}"
+        required: true
       - label: "Imagem"
         name: "image"
         widget: "image"
@@ -26,51 +28,18 @@ collections:
       - label: "Resumo"
         name: "summary"
         widget: "text"
+        required: true
       - label: "Conteúdo"
         name: "body"
         widget: "markdown"
+        required: true
       - label: "Categoria"
         name: "category"
         widget: "select"
-        options: ["Notícias", "Eventos", "Turismo", "Cultura"]
-        
-  - name: "artigos"
-    label: "Artigos"
-    folder: "content/artigos"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - label: "Título"
-        name: "title"
-        widget: "string"
-      - label: "Data"
-        name: "date"
-        widget: "datetime"
-      - label: "Imagem"
-        name: "image"
-        widget: "image"
-        required: false
-      - label: "Resumo"
-        name: "summary"
-        widget: "text"
-      - label: "Conteúdo"
-        name: "body"
-        widget: "markdown"
-      - label: "Autor"
-        name: "author"
-        widget: "string"
-        default: "Joaquim Vieira"
-        
-  - name: "sobre"
-    label: "Sobre"
-    files:
-      - label: "Página Sobre"
-        name: "sobre"
-        file: "content/sobre.md"
-        fields:
-          - label: "Título"
-            name: "title"
-            widget: "string"
-          - label: "Conteúdo"
-            name: "body"
-            widget: "markdown"
+        required: true
+        options: 
+          - "Notícias"
+          - "Eventos"
+          - "Turismo"
+          - "Cultura"
+        default: "Notícias"
