@@ -2,8 +2,6 @@ backend:
   name: github
   repo: aritoni01/Joaquim1
   branch: main
-  base_url: https://api.netlify.com
-  auth_endpoint: auth
 
 media_folder: "public/images"
 public_folder: "/images"
@@ -35,3 +33,44 @@ collections:
         name: "category"
         widget: "select"
         options: ["Notícias", "Eventos", "Turismo", "Cultura"]
+        
+  - name: "artigos"
+    label: "Artigos"
+    folder: "content/artigos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+      - label: "Data"
+        name: "date"
+        widget: "datetime"
+      - label: "Imagem"
+        name: "image"
+        widget: "image"
+        required: false
+      - label: "Resumo"
+        name: "summary"
+        widget: "text"
+      - label: "Conteúdo"
+        name: "body"
+        widget: "markdown"
+      - label: "Autor"
+        name: "author"
+        widget: "string"
+        default: "Joaquim Vieira"
+        
+  - name: "sobre"
+    label: "Sobre"
+    files:
+      - label: "Página Sobre"
+        name: "sobre"
+        file: "content/sobre.md"
+        fields:
+          - label: "Título"
+            name: "title"
+            widget: "string"
+          - label: "Conteúdo"
+            name: "body"
+            widget: "markdown"
