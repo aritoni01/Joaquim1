@@ -5,41 +5,106 @@ backend:
 media_folder: "public/images"
 public_folder: "/images"
 
+locale: 'pt'
+
 collections:
+  # Configuração do Site
+  - name: "config"
+    label: "Configuração do Site"
+    files:
+      - file: "content/config/site.yml"
+        label: "Configurações Gerais"
+        name: "site"
+        fields:
+          - {label: "Nome do Site", name: "siteName", widget: "string", default: "Castelo de Paiva"}
+          - {label: "Descrição", name: "description", widget: "text"}
+          - {label: "URL do Site", name: "siteUrl", widget: "string"}
+          - {label: "Email de Contacto", name: "contactEmail", widget: "string"}
+          - {label: "Telefone", name: "phone", widget: "string"}
+          - {label: "Morada", name: "address", widget: "text"}
+          - {label: "Redes Sociais", name: "social", widget: "object", fields: [
+              {label: "Facebook", name: "facebook", widget: "string", required: false},
+              {label: "Instagram", name: "instagram", widget: "string", required: false},
+              {label: "Twitter", name: "twitter", widget: "string", required: false}
+            ]}
+      - file: "content/config/navigation.yml"
+        label: "Navegação"
+        name: "navigation"
+        fields:
+          - {label: "Menu Principal", name: "mainMenu", widget: "list", fields: [
+              {label: "Título", name: "title", widget: "string"},
+              {label: "URL", name: "url", widget: "string"},
+              {label: "Submenu", name: "submenu", widget: "list", required: false, fields: [
+                {label: "Título", name: "title", widget: "string"},
+                {label: "URL", name: "url", widget: "string"}
+              ]}
+            ]}
+
+  # Notícias/Eventos
   - name: "noticias"
-    label: "Notícias"
+    label: "Notícias e Eventos"
     folder: "content/noticias"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Data de Publicação", name: "date", widget: "datetime" }
-      - { label: "Imagem Destacada", name: "image", widget: "image", required: false }
-      - { label: "Resumo", name: "summary", widget: "text" }
-      - { label: "Categoria", name: "category", widget: "select", options: ["noticias", "eventos", "historia", "turismo"] }
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
-      - { label: "Publicado", name: "published", widget: "boolean", default: true }
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss.SSSZ"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["noticia", "evento", "comunicado", "obra", "cultura", "desporto", "turismo", "educacao"]}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Imagem Destacada", name: "featuredImage", widget: "image", required: false}
+      - {label: "Publicado", name: "published", widget: "boolean", default: true}
+      - {label: "Evento?", name: "isEvent", widget: "boolean", default: false, required: false}
+      - {label: "Data do Evento", name: "eventDate", widget: "datetime", required: false}
+      - {label: "Local do Evento", name: "eventLocation", widget: "string", required: false}
+      - {label: "Preço", name: "eventPrice", widget: "string", required: false}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
 
+  # Páginas Estáticas
   - name: "pages"
     label: "Páginas"
     folder: "content/pages"
     create: true
     slug: "{{slug}}"
     fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Descrição", name: "description", widget: "text" }
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Descrição", name: "description", widget: "text", required: false}
+      - {label: "Imagem", name: "image", widget: "image", required: false}
+      - {label: "Publicado", name: "published", widget: "boolean", default: true}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
 
-  - name: "config"
-    label: "Configurações"
+  # Artigos/Conteúdo Editorial
+  - name: "artigos"
+    label: "Artigos"
+    folder: "content/artigos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Data", name: "date", widget: "datetime"}
+      - {label: "Autor", name: "author", widget: "string"}
+      - {label: "Resumo", name: "summary", widget: "text"}
+      - {label: "Categoria", name: "category", widget: "select", options: ["historia", "cultura", "turismo", "gastronomia", "natureza", "tradições"]}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Imagem Destacada", name: "featuredImage", widget: "image", required: false}
+      - {label: "Publicado", name: "published", widget: "boolean", default: true}
+      - {label: "Conteúdo", name: "body", widget: "markdown"}
+
+  # Elementos da Homepage
+  - name: "homepage"
+    label: "Página Principal"
     files:
-      - label: "Informações do Site"
-        name: "site_info"
-        file: "content/config/site.yml"
+      - file: "content/config/homepage.yml"
+        label: "Configuração da Homepage"
+        name: "homepage"
         fields:
-          - { label: "Nome do Site", name: "site_name", widget: "string" }
-          - { label: "Descrição", name: "description", widget: "text" }
-          - { label: "URL", name: "url", widget: "string" }
-          - { label: "Email de Contato", name: "contact_email", widget: "string" }
-          - { label: "Telefone", name: "phone", widget: "string" }
-          - { label: "Endereço", name: "address", widget: "text" }
+          - {label: "Título Principal", name: "heroTitle", widget: "string"}
+          - {label: "Subtítulo", name: "heroSubtitle", widget: "text"}
+          - {label: "Imagem de Fundo", name: "heroImage", widget: "image"}
+          - {label: "Secções em Destaque", name: "featuredSections", widget: "list", fields: [
+              {label: "Título", name: "title", widget: "string"},
+              {label: "Descrição", name: "description", widget: "text"},
+              {label: "Ícone", name: "icon", widget: "string"},
+              {label: "Link", name: "link", widget: "string"}
+            ]}
+          - {label: "Número de Notícias na Homepage", name: "newsCount", widget: "number", default: 6}
