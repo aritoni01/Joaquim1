@@ -1,0 +1,13 @@
+siteName: "Castelo de Paiva"
+description: "Portal oficial do Município de Castelo de Paiva. Informações sobre eventos, notícias, serviços municipais e tudo sobre a nossa cidade."
+siteUrl: "https://www.castelo-paiva.pt"
+contactEmail: "geral@cm-castelo-paiva.pt"
+phone: "+351 255 689 500"
+address: |
+  Câmara Municipal de Castelo de Paiva
+  Rua Dr. José Monteiro
+  4550-119 Castelo de Paiva
+social:
+  facebook: "https://www.facebook.com/CasteloDeP"
+  instagram: "https://www.instagram.com/castelo_paiva"
+  twitter: ""
