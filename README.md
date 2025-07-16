@@ -1,4 +1,4 @@
-# Castelo de Paiva - Site Oficial
+# Castelo de Paiva - Diário da terra
 
 Site oficial do município de Castelo de Paiva com sistema de gestão de conteúdos (CMS) integrado.
 
